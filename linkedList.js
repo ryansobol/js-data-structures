@@ -154,6 +154,35 @@ class LinkedList {
       current = current.next;
     }
   }
+
+  // O(n)
+  toArray() {
+    const array = [];
+
+    for (const value of this) {
+      array.push(value);
+    }
+
+    return array;
+  }
+
+  toString() {
+    const separator = ', ';
+
+    let string = '( ';
+
+    for (const value of this) {
+      string += value;
+
+      if (value !== this.last()) {
+        string += separator;
+      }
+    }
+
+    string += ' )';
+
+    return string;
+  }
 }
 
 const ll = new LinkedList();
@@ -189,3 +218,6 @@ console.log(ll.isEmpty(), ll.first(), ll.last());
 for (const value of ll) {
   console.log(value);
 }
+
+console.log(ll.toArray());
+console.log(ll.toString());
