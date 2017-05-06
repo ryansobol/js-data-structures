@@ -8,8 +8,6 @@ class LinkedListNode {
     this.next = next;
   }
 
-  // TODO prev and next can only be null or instances of this class
-
   // O(1)
   clear() {
     const temp = this.value;
