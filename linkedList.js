@@ -60,7 +60,7 @@ class LinkedList {
       this._tail = this._head;
     }
     else {
-      this._head.prev = this._head;
+      this._head.next.prev = this._head;
     }
 
     return value;
@@ -97,7 +97,7 @@ class LinkedList {
       this._head = this._tail;
     }
     else {
-      this._tail.next = this._tail;
+      this._tail.prev.next = this._tail;
     }
 
     return value;
@@ -144,6 +144,16 @@ class LinkedList {
 
     return temp;
   }
+
+  *[Symbol.iterator]() {
+    let current = this._head;
+
+    while (current) {
+      yield current.value;
+
+      current = current.next;
+    }
+  }
 }
 
 const ll = new LinkedList();
@@ -165,7 +175,17 @@ console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
 console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
 console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
 
-console.log(ll.push(7), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.push(8), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.push(9), ll.isEmpty(), ll.first(), ll.last());
+console.log(ll.push(7));
+console.log(ll.push(8));
+console.log(ll.push(9));
 console.log(ll.clear(), ll.isEmpty(), ll.first(), ll.last());
+
+ll.push(10)
+ll.push(11)
+ll.push(12)
+
+console.log(ll.isEmpty(), ll.first(), ll.last());
+
+for (const value of ll) {
+  console.log(value);
+}
