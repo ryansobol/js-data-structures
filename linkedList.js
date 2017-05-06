@@ -1,29 +1,7 @@
+/* eslint-disable no-undefined */
 'use strict';
 
-class Node {
-  // O(1)
-  constructor(value, prev = null, next = null) {
-    this.value = value;
-    this.prev = prev;
-    this.next = next;
-  }
-
-  // TODO prev and next can only be null or instances of this class
-
-  // O(1)
-  clear() {
-    const temp = this.value;
-
-    this.value = this.prev = this.next = null;
-
-    return temp;
-  }
-}
-
-const node = new Node(42);
-
-console.log(node.value, node._prev, node._next);
-console.log(node.clear());
+const Node = require('./linkedListNode');
 
 class LinkedList {
   // O(n)
@@ -38,17 +16,17 @@ class LinkedList {
 
   // O(1)
   isEmpty() {
-    return this._head === null;
+    return this.length === 0;
   }
 
   // O(1)
   first() {
-    return (this._head ? this._head.value : null);
+    return (this._head ? this._head.value : undefined);
   }
 
   // O(1)
   last() {
-    return (this._tail ? this._tail.value : null);
+    return (this._tail ? this._tail.value : undefined);
   }
 
   // O(1)
@@ -70,7 +48,7 @@ class LinkedList {
   // O(1)
   shift() {
     if (this.isEmpty()) {
-      return null;
+      return undefined;
     }
 
     this.length -= 1;
@@ -108,7 +86,7 @@ class LinkedList {
   // O(1)
   pop() {
     if (this.isEmpty()) {
-      return null;
+      return undefined;
     }
 
     this.length -= 1;
@@ -129,6 +107,10 @@ class LinkedList {
 
   // O(n)
   clear() {
+    if (this.isEmpty()) {
+      return 0;
+    }
+
     const temp = this.length;
 
     let current = this._head;
@@ -173,7 +155,7 @@ class LinkedList {
   toString() {
     const separator = ', ';
 
-    let string = '( ';
+    let string = '';
 
     for (const value of this) {
       string += value;
@@ -182,8 +164,6 @@ class LinkedList {
         string += separator;
       }
     }
-
-    string += ' )';
 
     return string;
   }
@@ -200,14 +180,12 @@ class LinkedList {
       index += 1;
     }
 
-    // eslint-disable-next-line no-undefined
     return undefined;
   }
 
   // O(n)
   get(key) {
     if (key < 0 || key >= this.length) {
-      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -225,7 +203,6 @@ class LinkedList {
   // O(n)
   set(key, value) {
     if (key < 0 || key >= this.length) {
-      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -247,7 +224,6 @@ class LinkedList {
   // O(n)
   insert(key, value) {
     if (key < 0 || key > this.length) {
-      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -281,7 +257,6 @@ class LinkedList {
   // O(n)
   delete(key) {
     if (key < 0 || key >= this.length) {
-      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -314,95 +289,4 @@ class LinkedList {
   }
 }
 
-const ll = new LinkedList();
-
-console.log(ll.length, ll._head, ll._tail);
-console.log(ll.isEmpty(), ll.first(), ll.last());
-
-console.log(ll.unshift(1), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.unshift(2), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.unshift(3), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.shift(), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.shift(), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.shift(), ll.isEmpty(), ll.first(), ll.last());
-
-console.log(ll.push(4), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.push(5), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.push(6), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
-console.log(ll.pop(), ll.isEmpty(), ll.first(), ll.last());
-
-console.log(ll.push(7));
-console.log(ll.push(8));
-console.log(ll.push(9));
-console.log(ll.clear(), ll.isEmpty(), ll.first(), ll.last());
-
-ll.push(10);
-ll.push(11);
-ll.push(12);
-
-console.log(ll.isEmpty(), ll.first(), ll.last());
-
-for (const value of ll) {
-  console.log(value);
-}
-
-console.log(ll.toArray());
-console.log(ll.toString());
-
-console.log(ll.findIndex(9));
-console.log(ll.findIndex(10));
-console.log(ll.findIndex(11));
-console.log(ll.findIndex(12));
-console.log(ll.findIndex(13));
-
-console.log(ll.get(-1));
-console.log(ll.get(0));
-console.log(ll.get(1));
-console.log(ll.get(2));
-console.log(ll.get(3));
-
-console.log(ll.set(-1, 19));
-console.log(ll.set(0, 20));
-console.log(ll.set(1, 21));
-console.log(ll.set(2, 22));
-console.log(ll.set(3, 23));
-
-console.log(ll.toString());
-
-console.log(ll.insert(-1, 29));
-console.log(ll.toString());
-
-console.log(ll.insert(0, 30));
-console.log(ll.toString());
-
-console.log(ll.insert(1, 31));
-console.log(ll.toString());
-
-console.log(ll.insert(ll.length - 2, 32));
-console.log(ll.toString());
-
-console.log(ll.insert(ll.length - 1, 33));
-console.log(ll.toString());
-
-console.log(ll.insert(ll.length, 34));
-console.log(ll.toString());
-
-console.log(ll.insert(ll.length + 1, 35));
-console.log(ll.toString());
-
-console.log(ll.delete(ll.length));
-console.log(ll.toString());
-
-console.log(ll.delete(ll.length - 1));
-console.log(ll.toString());
-
-console.log(ll.delete(1));
-console.log(ll.toString());
-
-console.log(ll.delete(0));
-console.log(ll.toString());
-
-console.log(ll.delete(-1));
-console.log(ll.toString());
+module.exports = LinkedList;

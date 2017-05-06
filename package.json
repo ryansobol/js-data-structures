@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "JavaScript Data Structures",
   "scripts": {
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "ava"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/ryansobol/js-data-structures#readme",
   "devDependencies": {
+    "ava": "^0.19.1",
     "eslint": "^3.10.2",
     "eslint-config-ryansobol": "^10.0.2"
   }
