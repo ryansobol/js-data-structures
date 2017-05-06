@@ -2,9 +2,8 @@
   "name": "js-data-structures",
   "version": "0.1.0",
   "description": "JavaScript Data Structures",
-  "main": "binaryHeap.js",
   "scripts": {
-    "test": "eslint ."
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -22,7 +21,7 @@
   },
   "homepage": "https://github.com/ryansobol/js-data-structures#readme",
   "devDependencies": {
-    "eslint": "^2.0.0",
-    "eslint-config-ryansobol": "^6.0.0-alpha.2"
+    "eslint": "^3.10.2",
+    "eslint-config-ryansobol": "^10.0.2"
   }
 }

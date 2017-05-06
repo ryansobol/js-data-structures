@@ -13,6 +13,7 @@ class Node {
   // O(1)
   clear() {
     const temp = this.value;
+
     this.value = this.prev = this.next = null;
 
     return temp;
@@ -75,6 +76,7 @@ class LinkedList {
     this.length -= 1;
 
     const temp = this._head;
+
     this._head = this._head.next;
 
     if (this.length === 0) {
@@ -112,6 +114,7 @@ class LinkedList {
     this.length -= 1;
 
     const temp = this._tail;
+
     this._tail = temp.prev;
 
     if (this.length === 0) {
@@ -145,7 +148,7 @@ class LinkedList {
     return temp;
   }
 
-  *[Symbol.iterator]() {
+  * [Symbol.iterator]() {
     let current = this._head;
 
     while (current) {
@@ -197,12 +200,14 @@ class LinkedList {
       index += 1;
     }
 
+    // eslint-disable-next-line no-undefined
     return undefined;
   }
 
   // O(n)
   get(key) {
     if (key < 0 || key >= this.length) {
+      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -220,6 +225,7 @@ class LinkedList {
   // O(n)
   set(key, value) {
     if (key < 0 || key >= this.length) {
+      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -228,7 +234,9 @@ class LinkedList {
 
     while (current) {
       if (key === index) {
-        return current.value = value;
+        current.value = value;
+
+        return value;
       }
 
       current = current.next;
@@ -239,6 +247,7 @@ class LinkedList {
   // O(n)
   insert(key, value) {
     if (key < 0 || key > this.length) {
+      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -272,6 +281,7 @@ class LinkedList {
   // O(n)
   delete(key) {
     if (key < 0 || key >= this.length) {
+      // eslint-disable-next-line no-undefined
       return undefined;
     }
 
@@ -328,9 +338,9 @@ console.log(ll.push(8));
 console.log(ll.push(9));
 console.log(ll.clear(), ll.isEmpty(), ll.first(), ll.last());
 
-ll.push(10)
-ll.push(11)
-ll.push(12)
+ll.push(10);
+ll.push(11);
+ll.push(12);
 
 console.log(ll.isEmpty(), ll.first(), ll.last());
 

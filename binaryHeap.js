@@ -8,6 +8,7 @@ class BinaryHeap {
   insert(value) {
     this._nodes.push(value);
     this._upHeap(this._nodes.length - 1);
+
     return value;
   }
 
