@@ -8,7 +8,7 @@ class Node {
     this.next = next;
   }
 
-  // TODO prev and next can only be nil or instances of this class
+  // TODO prev and next can only be null or instances of this class
 
   // O(1)
   clear() {
@@ -166,6 +166,7 @@ class LinkedList {
     return array;
   }
 
+  // O(n)
   toString() {
     const separator = ', ';
 
@@ -182,6 +183,124 @@ class LinkedList {
     string += ' )';
 
     return string;
+  }
+
+  // O(n)
+  findIndex(needle) {
+    let index = 0;
+
+    for (const value of this) {
+      if (value === needle) {
+        return index;
+      }
+
+      index += 1;
+    }
+
+    return undefined;
+  }
+
+  // O(n)
+  get(key) {
+    if (key < 0 || key >= this.length) {
+      return undefined;
+    }
+
+    let index = 0;
+
+    for (const value of this) {
+      if (key === index) {
+        return value;
+      }
+
+      index += 1;
+    }
+  }
+
+  // O(n)
+  set(key, value) {
+    if (key < 0 || key >= this.length) {
+      return undefined;
+    }
+
+    let current = this._head;
+    let index = 0;
+
+    while (current) {
+      if (key === index) {
+        return current.value = value;
+      }
+
+      current = current.next;
+      index += 1;
+    }
+  }
+
+  // O(n)
+  insert(key, value) {
+    if (key < 0 || key > this.length) {
+      return undefined;
+    }
+
+    if (key === 0) {
+      return this.unshift(value);
+    }
+    else if (key === this.length) {
+      return this.push(value);
+    }
+
+    this.length += 1;
+
+    let current = this._head;
+    let index = 0;
+
+    while (current) {
+      if (key === index) {
+        const next = current;
+        const prev = next.prev;
+
+        prev.next = new Node(value, prev, next);
+
+        return value;
+      }
+
+      current = current.next;
+      index += 1;
+    }
+  }
+
+  // O(n)
+  delete(key) {
+    if (key < 0 || key >= this.length) {
+      return undefined;
+    }
+
+    if (key === 0) {
+      return this.shift();
+    }
+    else if (key === this.length - 1) {
+      return this.pop();
+    }
+
+    this.length -= 1;
+
+    let current = this._head;
+    let index = 0;
+
+    while (current) {
+      if (key === index) {
+        const prev = current.prev;
+        const next = current.next;
+
+        prev.next = next;
+        next.prev = prev;
+
+        return current.clear();
+      }
+
+      current = current.next;
+      index += 1;
+    }
   }
 }
 
@@ -220,4 +339,60 @@ for (const value of ll) {
 }
 
 console.log(ll.toArray());
+console.log(ll.toString());
+
+console.log(ll.findIndex(9));
+console.log(ll.findIndex(10));
+console.log(ll.findIndex(11));
+console.log(ll.findIndex(12));
+console.log(ll.findIndex(13));
+
+console.log(ll.get(-1));
+console.log(ll.get(0));
+console.log(ll.get(1));
+console.log(ll.get(2));
+console.log(ll.get(3));
+
+console.log(ll.set(-1, 19));
+console.log(ll.set(0, 20));
+console.log(ll.set(1, 21));
+console.log(ll.set(2, 22));
+console.log(ll.set(3, 23));
+
+console.log(ll.toString());
+
+console.log(ll.insert(-1, 29));
+console.log(ll.toString());
+
+console.log(ll.insert(0, 30));
+console.log(ll.toString());
+
+console.log(ll.insert(1, 31));
+console.log(ll.toString());
+
+console.log(ll.insert(ll.length - 2, 32));
+console.log(ll.toString());
+
+console.log(ll.insert(ll.length - 1, 33));
+console.log(ll.toString());
+
+console.log(ll.insert(ll.length, 34));
+console.log(ll.toString());
+
+console.log(ll.insert(ll.length + 1, 35));
+console.log(ll.toString());
+
+console.log(ll.delete(ll.length));
+console.log(ll.toString());
+
+console.log(ll.delete(ll.length - 1));
+console.log(ll.toString());
+
+console.log(ll.delete(1));
+console.log(ll.toString());
+
+console.log(ll.delete(0));
+console.log(ll.toString());
+
+console.log(ll.delete(-1));
 console.log(ll.toString());
