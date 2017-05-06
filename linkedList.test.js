@@ -292,28 +292,28 @@ test('convert to a string', (t) => {
   t.is(ll.toString(), '1, 2, 3');
 });
 
-test('find index of the 0th value', (t) => {
+test('search for the 0th value', (t) => {
   const ll = new LinkedList(1, 2, 3);
 
-  t.is(ll.findIndex(1), 0);
+  t.is(ll.search(1), 0);
 });
 
-test('find index of the 1st value', (t) => {
+test('search for the 1st value', (t) => {
   const ll = new LinkedList(1, 2, 3);
 
-  t.is(ll.findIndex(2), 1);
+  t.is(ll.search(2), 1);
 });
 
-test('find index of the 2nd value', (t) => {
+test('search for the 2nd value', (t) => {
   const ll = new LinkedList(1, 2, 3);
 
-  t.is(ll.findIndex(3), 2);
+  t.is(ll.search(3), 2);
 });
 
-test('find index of a non-existant value', (t) => {
+test('search for a non-existant value', (t) => {
   const ll = new LinkedList(1, 2, 3);
 
-  t.is(ll.findIndex(4), undefined);
+  t.is(ll.search(4), undefined);
 });
 
 test('get 0th value of a non-empty instance', (t) => {

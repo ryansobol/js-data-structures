@@ -169,7 +169,7 @@ class LinkedList {
   }
 
   // O(n)
-  findIndex(needle) {
+  search(needle) {
     let index = 0;
 
     for (const value of this) {
