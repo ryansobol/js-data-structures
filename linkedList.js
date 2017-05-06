@@ -57,7 +57,7 @@ class LinkedList {
 
     this._head = this._head.next;
 
-    if (this.length === 0) {
+    if (this.isEmpty()) {
       this._tail = null;
     }
     else {
@@ -95,7 +95,7 @@ class LinkedList {
 
     this._tail = temp.prev;
 
-    if (this.length === 0) {
+    if (this.isEmpty()) {
       this._head = null;
     }
     else {
