@@ -3,10 +3,6 @@
 class StaticArrayMemory {
   // O(1)
   constructor(length) {
-    if (length <= 0) {
-      throw new RangeError(`invalid length ${length}`);
-    }
-
     this._chunk = new Array(this.length);
     this.length = length;
     this.word = 64;
@@ -17,6 +13,10 @@ class StaticArrayMemory {
 
   // O(1)
   _addressToIndex(address) {
+    if (address < this.head || address >= this.head * this.word * this.length) {
+      throw new RangeError(`invalid address ${address}`);
+    }
+
     return (address - this.head) / this.word;
   }
 
@@ -24,20 +24,12 @@ class StaticArrayMemory {
   get(address) {
     const index = this._addressToIndex(address);
 
-    if (index < 0 || index >= this.length) {
-      throw new RangeError(`invalid address ${address}`);
-    }
-
     return this._chunk[index];
   }
 
   // O(1)
   set(address, value) {
     const index = this._addressToIndex(address);
-
-    if (index < 0 || index >= this.length) {
-      throw new RangeError(`invalid address ${address}`);
-    }
 
     this._chunk[index] = value;
 

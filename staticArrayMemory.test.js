@@ -1,10 +1,20 @@
-/* eslint-disable no-new, no-undefined */
+/* eslint-disable no-undefined */
 'use strict';
 
 const test = require('ava');
 const Memory = require('./staticArrayMemory');
 
-test('instantiate with valid length', (t) => {
+test('instantiate with no length', (t) => {
+  const memory = new Memory(0);
+
+  t.is(memory.length, 0);
+  t.is(memory.word, 64);
+  t.true(memory.head >= 0);
+  t.true(memory.head <= 320000);
+  t.is(memory.head % memory.word, 0);
+});
+
+test('instantiate with small length', (t) => {
   const memory = new Memory(1);
 
   t.is(memory.length, 1);
@@ -14,12 +24,14 @@ test('instantiate with valid length', (t) => {
   t.is(memory.head % memory.word, 0);
 });
 
-test('instantiate with invalid length', (t) => {
-  const error = t.throws(() => {
-    new Memory(0);
-  }, RangeError);
+test('instantiate with large length', (t) => {
+  const memory = new Memory(1000000);
 
-  t.is(error.message, 'invalid length 0');
+  t.is(memory.length, 1000000);
+  t.is(memory.word, 64);
+  t.true(memory.head >= 0);
+  t.true(memory.head <= 320000);
+  t.is(memory.head % memory.word, 0);
 });
 
 test('get value from valid address', (t) => {
