@@ -1,3 +1,4 @@
+/* eslint-disable no-new, no-undefined */
 'use strict';
 
 const test = require('ava');
@@ -15,10 +16,10 @@ test('instantiate with valid length', (t) => {
 
 test('instantiate with invalid length', (t) => {
   const error = t.throws(() => {
-		new Memory(0);
-	}, RangeError);
+    new Memory(0);
+  }, RangeError);
 
-	t.is(error.message, 'invalid length 0');
+  t.is(error.message, 'invalid length 0');
 });
 
 test('get value from valid address', (t) => {
@@ -33,10 +34,10 @@ test('get value from invalid address', (t) => {
   const address = memory.head - memory.word;
 
   const error = t.throws(() => {
-		memory.get(address);
-	}, RangeError);
+    memory.get(address);
+  }, RangeError);
 
-	t.is(error.message, `invalid address ${address}`);
+  t.is(error.message, `invalid address ${address}`);
 });
 
 test('set value to valid address', (t) => {
@@ -55,5 +56,5 @@ test('set value to invalid address', (t) => {
     memory.set(address, 42);
   }, RangeError);
 
-	t.is(error.message, `invalid address ${address}`);
+  t.is(error.message, `invalid address ${address}`);
 });

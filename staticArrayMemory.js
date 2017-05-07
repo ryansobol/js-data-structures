@@ -16,13 +16,13 @@ class StaticArrayMemory {
   }
 
   // O(1)
-  _address_to_index(address) {
+  _addressToIndex(address) {
     return (address - this.head) / this.word;
   }
 
   // O(1)
   get(address) {
-    const index = this._address_to_index(address);
+    const index = this._addressToIndex(address);
 
     if (index < 0 || index >= this.length) {
       throw new RangeError(`invalid address ${address}`);
@@ -33,13 +33,15 @@ class StaticArrayMemory {
 
   // O(1)
   set(address, value) {
-    const index = this._address_to_index(address);
+    const index = this._addressToIndex(address);
 
     if (index < 0 || index >= this.length) {
       throw new RangeError(`invalid address ${address}`);
     }
 
-    return this._chunk[index] = value;
+    this._chunk[index] = value;
+
+    return value;
   }
 }
 
