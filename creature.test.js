@@ -13,6 +13,8 @@ test('instantiate with default attributes', (t) => {
   t.is(creature.str, 10);
 
   t.is(creature.weapon.constructor.name, 'Weapon');
+  t.is(creature.weapon.times, 1);
+  t.is(creature.weapon.sides, 3);
 });
 
 test('instantiate with custom attributes', (t) => {
