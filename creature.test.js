@@ -10,7 +10,7 @@ test('instantiate with default attributes', (t) => {
   t.is(creature.maxHp, 1);
   t.is(creature.curHp, 1);
 
-  t.is(creature.str, 10);
+  t.is(creature.strength, 10);
 
   t.is(creature.weapon.constructor.name, 'Weapon');
   t.is(creature.weapon.times, 1);
@@ -21,7 +21,7 @@ test('instantiate with custom attributes', (t) => {
   const attrs = {
     maxHp: 7,
     curHp: 4,
-    str: 13,
+    strength: 13,
     weapon: new Weapon(1, 6)
   };
 
@@ -30,7 +30,7 @@ test('instantiate with custom attributes', (t) => {
   t.is(creature.maxHp, attrs.maxHp);
   t.is(creature.curHp, attrs.curHp);
 
-  t.is(creature.str, attrs.str);
+  t.is(creature.strength, attrs.strength);
 
   t.is(creature.weapon, attrs.weapon);
 });
@@ -88,7 +88,7 @@ test('roll attack', (t) => {
 });
 
 test('roll damage', (t) => {
-  const creature = new Creature({ str: 12, weapon: new Weapon(1, 6) });
+  const creature = new Creature({ strength: 12, weapon: new Weapon(1, 6) });
 
   const roll = creature.rollDamage();
 

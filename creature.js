@@ -9,7 +9,7 @@ class Creature {
     this.maxHp = attrs.maxHp == undefined ? 1 : attrs.maxHp;
     this.curHp = attrs.curHp == undefined ? this.maxHp : attrs.curHp;
 
-    this.str = attrs.str == undefined ? 10 : attrs.str;
+    this.strength = attrs.strength == undefined ? 10 : attrs.strength;
     /* eslint-enable eqeqeq, no-undefined */
 
     this.weapon = attrs.weapon || new Weapon(1, 3);
@@ -32,9 +32,9 @@ class Creature {
   }
 
   rollDamage() {
-    const strModifier = Math.floor((this.str - 10) / 2);
+    const strengthModifier = Math.floor((this.strength - 10) / 2);
 
-    return this.weapon.rollSwing() + strModifier;
+    return this.weapon.rollSwing() + strengthModifier;
   }
 }
 
