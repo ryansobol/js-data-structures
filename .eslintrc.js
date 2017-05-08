@@ -5,7 +5,7 @@ module.exports = {
   ],
 
   rules: {
-    'id-length': [2, { exceptions: ['t'] }],
+    'id-length': [2, { exceptions: ['i', 't'] }],
     'no-console': 0
   }
 };

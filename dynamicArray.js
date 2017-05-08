@@ -9,7 +9,7 @@ class DynamicArray {
     this._staticArray = new Float64Array(this.length * 2);
   }
 
-  get capacity()  {
+  get capacity() {
     return this._staticArray.length;
   }
 

@@ -1,4 +1,4 @@
-/* eslint-disable no-undefined */
+/* eslint-disable no-new, no-undefined */
 'use strict';
 
 const test = require('ava');
@@ -36,7 +36,6 @@ test('instantiate under the minimum length', (t) => {
 
   t.is(error.message, 'Invalid typed array length');
 });
-
 
 test('instantiate over the maximum length', (t) => {
   const length = Math.pow(2, 32) / 4;
