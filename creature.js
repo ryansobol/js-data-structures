@@ -5,25 +5,20 @@ const Weapon = require('./weapon');
 
 class Creature {
   constructor(attrs = {}) {
-    /* eslint-disable eqeqeq, no-undefined */
-    this.maxHp = attrs.maxHp == undefined ? 1 : attrs.maxHp;
-    this.curHp = attrs.curHp == undefined ? this.maxHp : attrs.curHp;
-
-    this.str = attrs.str == undefined ? 10 : attrs.str;
-    /* eslint-enable eqeqeq, no-undefined */
-
+    this.health = attrs.health || 1;
+    this.strength = attrs.strength || 10;
     this.weapon = attrs.weapon || new Weapon(1, 3);
   }
 
-  isDisabled() {
-    return this.curHp === 0;
+  isFeinted() {
+    return this.health === 1;
   }
 
-  takeDamage(dmg) {
-    this.curHp -= dmg;
+  takeDamage(damage) {
+    this.health -= damage;
 
-    if (this.curHp < 0) {
-      this.curHp = 0;
+    if (this.health < 1) {
+      this.health = 1;
     }
   }
 
@@ -32,9 +27,9 @@ class Creature {
   }
 
   rollDamage() {
-    const strModifier = Math.floor((this.str - 10) / 2);
+    const strengthModifier = Math.floor((this.strength - 10) / 2);
 
-    return this.weapon.rollSwing() + strModifier;
+    return this.weapon.rollSwing() + strengthModifier;
   }
 }
 
