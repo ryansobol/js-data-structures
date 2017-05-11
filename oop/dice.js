@@ -5,7 +5,7 @@ module.exports = {
     let total = 0;
 
     for (let i = 0; i < times; i++) {
-      total += Math.ceil(Math.random() * sides);
+      total += Math.floor(Math.random() * sides) + 1;
     }
 
     return total;
