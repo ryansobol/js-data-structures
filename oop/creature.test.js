@@ -9,6 +9,7 @@ test('instantiate with default attributes', (t) => {
   const creature = new Creature();
 
   t.is(creature.armor, null);
+  t.is(creature.dodge, 0);
   t.is(creature.gold, 0);
   t.is(creature.health, 1);
   t.is(creature.weapon, null);
@@ -17,6 +18,7 @@ test('instantiate with default attributes', (t) => {
 test('instantiate with custom attributes', (t) => {
   const attrs = {
     armor: new Armor(1),
+    dodge: 2,
     gold: 10,
     health: 4,
     weapon: new Weapon(1, 6)
@@ -25,6 +27,7 @@ test('instantiate with custom attributes', (t) => {
   const creature = new Creature(attrs);
 
   t.is(creature.armor, attrs.armor);
+  t.is(creature.dodge, attrs.dodge);
   t.is(creature.gold, attrs.gold);
   t.is(creature.health, attrs.health);
   t.is(creature.weapon, attrs.weapon);
@@ -40,6 +43,18 @@ test('is feinted', (t) => {
   const creature = new Creature({ health: 1 });
 
   t.true(creature.isFeinted());
+});
+
+test('take hit', (t) => {
+  const creature = new Creature({ dodge: 2 });
+
+  t.true(creature.takeHit(3));
+});
+
+test('not take hit', (t) => {
+  const creature = new Creature({ dodge: 2 });
+
+  t.false(creature.takeHit(2));
 });
 
 test('take damage and not become feinted', (t) => {
@@ -103,6 +118,14 @@ test('take excessive damage, block more and not become feinted', (t) => {
 
   t.is(creature.health, 5);
   t.false(creature.isFeinted());
+});
+
+test('roll hit', (t) => {
+  const creature = new Creature();
+
+  const roll = creature.rollHit();
+
+  t.true(roll >= 1 && roll <= 20);
 });
 
 test('roll damage', (t) => {

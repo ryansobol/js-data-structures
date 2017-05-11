@@ -1,8 +1,11 @@
 'use strict';
 
+const dice = require('./dice');
+
 class Creature {
   constructor(attrs = {}) {
     this.armor = attrs.armor || null;
+    this.dodge = attrs.dodge || 0;
     this.gold = attrs.gold || 0;
     this.health = attrs.health || 1;
     this.weapon = attrs.weapon || null;
@@ -12,20 +15,28 @@ class Creature {
     return this.health === 1;
   }
 
+  takeHit(hit) {
+    return this.dodge < hit;
+  }
+
   takeDamage(damage) {
-    let blockedDamage = damage;
+    let unblocked = damage;
 
     if (this.armor) {
-      blockedDamage -= this.armor.block;
+      unblocked -= this.armor.block;
     }
 
-    if (blockedDamage > 0) {
-      this.health -= blockedDamage;
+    if (unblocked > 0) {
+      this.health -= unblocked;
     }
 
     if (this.health < 1) {
       this.health = 1;
     }
+  }
+
+  rollHit() {
+    return dice.roll(1, 20);
   }
 
   rollDamage() {
