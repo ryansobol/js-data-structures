@@ -23,7 +23,7 @@ class Combat {
 
     this.log.push(`${attacker.name} vs ${defender.name}`);
 
-    while (!attacker.isFainted() && !defender.isFainted()) {
+    while (true) {
       const hit = attacker.rollHit();
 
       if (!defender.takeHit(hit)) {
@@ -41,22 +41,24 @@ class Combat {
         this.log.push(`${attacker.name} hits ${defender.name} for ${taken} damage`);
       }
 
+      if (defender.isFainted()) {
+        break;
+      }
+
       const temp = attacker;
 
       attacker = defender;
       defender = temp;
     }
 
-    if (defender.isFainted()) {
-      this.log.push(`${attacker.name} wins!`);
+    const gold = defender.gold;
 
-      return attacker;
-    }
-    else {
-      this.log.push(`${defender.name} wins!`);
+    defender.gold = 0;
+    attacker.gold += gold;
 
-      return defender;
-    }
+    this.log.push(`${attacker.name} defeats ${defender.name} and wins ${gold} gold!`);
+
+    return attacker;
   }
 
   displayLog() {
