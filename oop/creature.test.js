@@ -12,7 +12,7 @@ test('instantiate with default attributes', (t) => {
   t.is(creature.dodge, 0);
   t.is(creature.gold, 0);
   t.is(creature.health, 1);
-  t.is(creature.name, 'Boar');
+  t.is(creature.name, 'Creature');
   t.is(creature.weapon, null);
 });
 

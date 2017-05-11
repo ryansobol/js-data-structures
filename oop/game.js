@@ -9,7 +9,7 @@ const dragon = new Creature({
   armor: new Armor(6),
   dodge: 1,
   gold: 100,
-  health: 70,
+  health: 85,
   name: 'Dragon',
   weapon: new Weapon(1, 8)
 });
