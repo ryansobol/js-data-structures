@@ -12,6 +12,7 @@ test('instantiate with default attributes', (t) => {
   t.is(creature.dodge, 0);
   t.is(creature.gold, 0);
   t.is(creature.health, 1);
+  t.is(creature.name, 'Boar');
   t.is(creature.weapon, null);
 });
 
@@ -21,6 +22,7 @@ test('instantiate with custom attributes', (t) => {
     dodge: 2,
     gold: 10,
     health: 4,
+    name: 'Knight',
     weapon: new Weapon(1, 6)
   };
 
@@ -30,19 +32,20 @@ test('instantiate with custom attributes', (t) => {
   t.is(creature.dodge, attrs.dodge);
   t.is(creature.gold, attrs.gold);
   t.is(creature.health, attrs.health);
+  t.is(creature.name, attrs.name);
   t.is(creature.weapon, attrs.weapon);
 });
 
-test('is not feinted', (t) => {
+test('is not fainted', (t) => {
   const creature = new Creature({ health: 2 });
 
-  t.false(creature.isFeinted());
+  t.false(creature.isFainted());
 });
 
-test('is feinted', (t) => {
+test('is fainted', (t) => {
   const creature = new Creature({ health: 1 });
 
-  t.true(creature.isFeinted());
+  t.true(creature.isFainted());
 });
 
 test('take hit', (t) => {
@@ -57,67 +60,74 @@ test('not take hit', (t) => {
   t.false(creature.takeHit(2));
 });
 
-test('take damage and not become feinted', (t) => {
+test('take damage and not become fainted', (t) => {
   const creature = new Creature({ health: 5 });
 
-  creature.takeDamage(3);
+  const taken = creature.takeDamage(3);
 
+  t.is(taken, 3);
   t.is(creature.health, 2);
-  t.false(creature.isFeinted());
+  t.false(creature.isFainted());
 });
 
-test('take damage and become feinted', (t) => {
+test('take damage and become fainted', (t) => {
   const creature = new Creature({ health: 5 });
 
-  creature.takeDamage(4);
+  const taken = creature.takeDamage(4);
 
+  t.is(taken, 4);
   t.is(creature.health, 1);
-  t.true(creature.isFeinted());
+  t.true(creature.isFainted());
 });
 
-test('take excessive damage and become feinted', (t) => {
+test('take excessive damage and become fainted', (t) => {
   const creature = new Creature({ health: 5 });
 
-  creature.takeDamage(5);
+  const taken = creature.takeDamage(5);
 
+  t.is(taken, 5);
   t.is(creature.health, 1);
-  t.true(creature.isFeinted());
+  t.true(creature.isFainted());
 });
 
-test('take excessive damage, block some and not become feinted', (t) => {
+test('take excessive damage, block some and not become fainted', (t) => {
   const creature = new Creature({ health: 5, armor: new Armor(2) });
 
-  creature.takeDamage(5);
+  const taken = creature.takeDamage(5);
 
+  t.is(taken, 3);
   t.is(creature.health, 2);
-  t.false(creature.isFeinted());
+  t.false(creature.isFainted());
 });
 
-test('take excessive damage, block some and become feinted', (t) => {
+test('take excessive damage, block some and become fainted', (t) => {
   const creature = new Creature({ health: 5, armor: new Armor(1) });
 
-  creature.takeDamage(5);
+  const taken = creature.takeDamage(5);
 
+  t.is(taken, 4);
   t.is(creature.health, 1);
-  t.true(creature.isFeinted());
+  t.true(creature.isFainted());
 });
 
-test('take excessive damage, block all and not become feinted', (t) => {
+test('take excessive damage, block all and not become fainted', (t) => {
   const creature = new Creature({ health: 5, armor: new Armor(5) });
 
-  creature.takeDamage(5);
+  const taken = creature.takeDamage(5);
 
+  t.is(taken, 0);
   t.is(creature.health, 5);
-  t.false(creature.isFeinted());
+  t.false(creature.isFainted());
 });
 
-test('take excessive damage, block more and not become feinted', (t) => {
+test('take excessive damage, block more and not become fainted', (t) => {
   const creature = new Creature({ health: 5, armor: new Armor(6) });
 
-  creature.takeDamage(5);
+  const taken = creature.takeDamage(5);
 
+  t.is(taken, -1);
   t.is(creature.health, 5);
-  t.false(creature.isFeinted());
+  t.false(creature.isFainted());
 });
 
 test('roll hit', (t) => {

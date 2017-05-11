@@ -8,10 +8,11 @@ class Creature {
     this.dodge = attrs.dodge || 0;
     this.gold = attrs.gold || 0;
     this.health = attrs.health || 1;
+    this.name = attrs.name || 'Boar';
     this.weapon = attrs.weapon || null;
   }
 
-  isFeinted() {
+  isFainted() {
     return this.health === 1;
   }
 
@@ -33,6 +34,8 @@ class Creature {
     if (this.health < 1) {
       this.health = 1;
     }
+
+    return unblocked;
   }
 
   rollHit() {
