@@ -10,52 +10,53 @@ class Combat {
   start() {
     this.log = [];
 
-    const creatures = [this.creature1, this.creature2];
+    let attacker, defender;
 
     if (Math.random() < 0.5) {
-      creatures.push(creatures.shift());
-    }
-
-    this.log.push(`${creatures[0].name} vs ${creatures[1].name}`);
-
-    while (!creatures[0].isFainted() && !creatures[1].isFainted()) {
-      this._attack(creatures[0], creatures[1]);
-
-      creatures.push(creatures.shift());
-    }
-
-    if (creatures[1].isFainted()) {
-      this.log.push(`${creatures[0].name} wins!`);
-
-      return creatures[0];
+      attacker = this.creature1;
+      defender = this.creature2;
     }
     else {
-      this.log.push(`${creatures[1].name} wins!`);
-
-      return creatures[1];
-    }
-  }
-
-  _attack(attacker, defender) {
-    const hit = attacker.rollHit();
-
-    if (!defender.takeHit(hit)) {
-      this.log.push(`${attacker.name} misses ${defender.name}`);
-
-      return;
+      attacker = this.creature2;
+      defender = this.creature1;
     }
 
-    const damage = attacker.rollDamage();
+    this.log.push(`${attacker.name} vs ${defender.name}`);
 
-    const taken = defender.takeDamage(damage);
+    while (!attacker.isFainted() && !defender.isFainted()) {
+      const hit = attacker.rollHit();
 
-    if (taken <= 0) {
-      this.log.push(`${attacker.name} hits ${defender.name} but deals no damage`);
+      if (!defender.takeHit(hit)) {
+        this.log.push(`${attacker.name} misses ${defender.name}`);
+      }
 
-      return;
+      const damage = attacker.rollDamage();
+
+      const taken = defender.takeDamage(damage);
+
+      if (taken <= 0) {
+        this.log.push(`${attacker.name} hits ${defender.name} but deals no damage`);
+      }
+      else {
+        this.log.push(`${attacker.name} hits ${defender.name} for ${taken} damage`);
+      }
+
+      const temp = attacker;
+
+      attacker = defender;
+      defender = temp;
     }
 
-    this.log.push(`${attacker.name} hits ${defender.name} for ${taken} damage`);
+    if (defender.isFainted()) {
+      this.log.push(`${attacker.name} wins!`);
+
+      return attacker;
+    }
+    else {
+      this.log.push(`${defender.name} wins!`);
+
+      return defender;
+    }
   }
 
   displayLog() {
