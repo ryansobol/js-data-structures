@@ -144,3 +144,31 @@ test('is a node with both invalid children not a binary search tree', (t) => {
 
   t.false(node.isBSTMinMax(-Number.MAX_VALUE, Number.MAX_VALUE));
 });
+
+test('lowest common ancestor for node with no children', (t) => {
+  const node = new Node(42);
+
+  t.is(node.lowestCommonAncestor(41, 43), null);
+});
+
+test('lowest common ancestor for node with one left child', (t) => {
+  const left = new Node(41);
+  const node = new Node(42, left);
+
+  t.is(node.lowestCommonAncestor(41, 43), 41);
+});
+
+test('lowest common ancestor for node with one right child', (t) => {
+  const right = new Node(43);
+  const node = new Node(42, null, right);
+
+  t.is(node.lowestCommonAncestor(41, 43), 43);
+});
+
+test('lowest common ancestor for node with two children', (t) => {
+  const left = new Node(41);
+  const right = new Node(43);
+  const node = new Node(42, left, right);
+
+  t.is(node.lowestCommonAncestor(41, 43), 42);
+});

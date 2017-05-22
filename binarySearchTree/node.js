@@ -82,6 +82,21 @@ class Node {
 
     return isLeft && isRight;
   }
+
+  lowestCommonAncestor(a, b) {
+    if (this.key === a || this.key === b) {
+      return this.key;
+    }
+
+    const left = this.left ? this.left.lowestCommonAncestor(a, b) : null;
+    const right = this.right ? this.right.lowestCommonAncestor(a, b) : null;
+
+    if (left && right) {
+      return this.key;
+    }
+
+    return left ? left : right;
+  }
 }
 
 module.exports = Node;

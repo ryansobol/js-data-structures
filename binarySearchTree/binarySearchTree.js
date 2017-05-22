@@ -166,6 +166,14 @@ class BinarySearchTree {
 
     return true;
   }
+
+  lowestCommonAncestor(a, b) {
+    if (!this._root) {
+      return null;
+    }
+
+    return this._root.lowestCommonAncestor(a, b);
+  }
 }
 
 module.exports = BinarySearchTree;
