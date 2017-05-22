@@ -1,7 +1,7 @@
 'use strict';
 
 const test = require('ava');
-const Node = require('./linkedListNode');
+const Node = require('./node');
 
 test('instantiate with no value, prev or next', (t) => {
   const node = new Node();

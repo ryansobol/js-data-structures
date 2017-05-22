@@ -1,7 +1,7 @@
 /* eslint-disable no-undefined */
 'use strict';
 
-const Node = require('./linkedListNode');
+const Node = require('./node');
 
 class LinkedList {
   // O(n)

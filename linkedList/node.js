@@ -1,6 +1,6 @@
 'use strict';
 
-class LinkedListNode {
+class Node {
   // O(1)
   constructor(value = null, prev = null, next = null) {
     this.value = value;
@@ -18,4 +18,4 @@ class LinkedListNode {
   }
 }
 
-module.exports = LinkedListNode;
+module.exports = Node;
