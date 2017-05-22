@@ -59,4 +59,22 @@ test('count the ones in a number', (t) => {
   t.is(binary.countOnesOptimized(16), 1);
 });
 
-// 128 64 32 16 8 4 2 1
+test('is binary a palindrome', (t) => {
+  t.true(binary.isPalindrome(0));
+  t.true(binary.isPalindrome(1));
+  t.false(binary.isPalindrome(2));
+  t.true(binary.isPalindrome(3));
+  t.false(binary.isPalindrome(4));
+  t.true(binary.isPalindrome(5));
+  t.false(binary.isPalindrome(6));
+  t.true(binary.isPalindrome(7));
+  t.false(binary.isPalindrome(8));
+  t.true(binary.isPalindrome(9));
+  t.false(binary.isPalindrome(10));
+  t.false(binary.isPalindrome(11));
+  t.false(binary.isPalindrome(12));
+  t.false(binary.isPalindrome(13));
+  t.false(binary.isPalindrome(14));
+  t.true(binary.isPalindrome(15));
+  t.false(binary.isPalindrome(16));
+});

@@ -27,5 +27,22 @@ module.exports = {
     }
 
     return count;
+  },
+
+  isPalindrome(number) {
+    const string = number.toString(2);
+    const stack = [];
+
+    for (let i = 0; i < Math.floor(string.length / 2); i++) {
+      stack.push(string[i]);
+    }
+
+    for (let i = Math.ceil(string.length / 2); i < string.length; i++) {
+      if (stack.pop() !== string[i]) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
