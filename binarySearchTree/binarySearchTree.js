@@ -3,8 +3,8 @@
 const Node = require('./node');
 
 class BinarySearchTree {
-  // Average: O(n^log n)
-  // Worst: O(n^2)
+  // Average: O(n log n)
+  // Worst: O(2n) ~= O(n)
   constructor(...values) {
     this.length = 0;
     this._root = null;
