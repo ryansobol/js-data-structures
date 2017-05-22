@@ -1,12 +1,14 @@
 'use strict';
 
 module.exports = {
+  // O(2n) ~= O(n)
   countOnesString(number) {
     return number.toString(2).split('').reduce((accum, element) => {
       return accum + parseInt(element)
     }, 0);
   },
 
+  // O(d) where d is the number of digits
   countOnesBitwise(number) {
     let count;
 
@@ -19,6 +21,7 @@ module.exports = {
     return count;
   },
 
+  // O(c) where c is the number of ones
   countOnesOptimized(number) {
     let count;
 
@@ -29,6 +32,8 @@ module.exports = {
     return count;
   },
 
+  // O(n)
+  // For recursive solution, see String.prototype.isPalindrome
   isPalindrome(number) {
     const string = number.toString(2);
     const stack = [];
