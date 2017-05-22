@@ -63,7 +63,7 @@ class Set {
     return result;
   }
 
-  // O(n)
+  // O(mn)
   union(set) {
     const result = new Set();
 
