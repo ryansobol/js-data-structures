@@ -47,6 +47,21 @@ test('is palindrome', (t) => {
   t.true('zyxwxyz'.isPalindrome());
 
   t.true('aa'.isPalindrome());
-  // t.true('aaaa'.isPalindrome());
-  // t.true('aaaaaa'.isPalindrome());
+  t.true('aaaa'.isPalindrome());
+  t.true('aaaaaa'.isPalindrome());
+
+  t.false('ab'.isPalindrome());
+  t.false('abb'.isPalindrome());
+  t.false('abbb'.isPalindrome());
+  t.false('abbbb'.isPalindrome());
+
+  t.false('abaa'.isPalindrome());
+  t.false('abaaa'.isPalindrome());
+  t.false('aaba'.isPalindrome());
+  t.false('aaaba'.isPalindrome());
+
+  t.false('ab'.isPalindrome());
+  t.false('aab'.isPalindrome());
+  t.false('aaab'.isPalindrome());
+  t.false('aaaab'.isPalindrome());
 });

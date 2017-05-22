@@ -48,6 +48,7 @@ String.prototype.findFirstNonRepeatingCharFast = function() {
   return null;
 };
 
+// O(n/2) ~= O(n)
 String.prototype.isPalindrome = function() {
   if (this.length <= 1) {
     return true;
