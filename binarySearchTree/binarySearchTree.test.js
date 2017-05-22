@@ -274,30 +274,58 @@ test('not recursively find a value in an empty tree', (t) => {
   t.false(bst.findRecursively(0));
 });
 
-test('is empty tree a binary search tree', (t) => {
+test('is empty tree a binary search tree min/max', (t) => {
   const tree = new BinarySearchTree();
 
-  t.true(tree.isBST());
+  t.true(tree.isBSTMinMax());
 });
 
-test('is non-empty tree a binary search tree', (t) => {
+test('is non-empty tree a binary search tree min/max', (t) => {
   const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
 
-  t.true(tree.isBST());
+  t.true(tree.isBSTMinMax());
 });
 
-test('is tree with invalid left, right node a binary search tree', (t) => {
+test('is tree with invalid left, right node a binary search tree min/max', (t) => {
   const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
 
   tree._root.left.right.key = 25;
 
-  t.false(tree.isBST());
+  t.false(tree.isBSTMinMax());
 });
 
-test('is tree with invalid right, left node a binary search tree', (t) => {
+test('is tree with invalid right, left node a binary search tree min/max', (t) => {
   const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
 
   tree._root.right.left.key = 5;
 
-  t.false(tree.isBST());
+  t.false(tree.isBSTMinMax());
+});
+
+test('is empty tree a binary search tree traversal', (t) => {
+  const tree = new BinarySearchTree();
+
+  t.true(tree.isBSTInOrderTraversal());
+});
+
+test('is non-empty tree a binary search tree traversal', (t) => {
+  const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
+
+  t.true(tree.isBSTInOrderTraversal());
+});
+
+test('is tree with invalid left, right node a binary search tree traversal', (t) => {
+  const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
+
+  tree._root.left.right.key = 25;
+
+  t.false(tree.isBSTInOrderTraversal());
+});
+
+test('is tree with invalid right, left node a binary search tree traversal', (t) => {
+  const tree = new BinarySearchTree(20, 10, 30, 5, 15, 25, 40);
+
+  tree._root.right.left.key = 5;
+
+  t.false(tree.isBSTInOrderTraversal());
 });

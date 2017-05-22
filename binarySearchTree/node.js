@@ -82,10 +82,6 @@ class Node {
 
     return isLeft && isRight;
   }
-
-  // O(n)
-  // isBSTInOrderTraversal(prev) {
-  // }
 }
 
 module.exports = Node;

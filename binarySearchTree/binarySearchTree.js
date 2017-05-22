@@ -122,12 +122,49 @@ class BinarySearchTree {
   }
 
   // O(n)
-  isBST() {
+  isBSTMinMax() {
     if (!this._root) {
       return true;
     }
 
     return this._root.isBSTMinMax(-Number.MAX_VALUE, Number.MAX_VALUE);
+  }
+
+  // O(n)
+  isBSTInOrderTraversal() {
+    if (!this._root) {
+      return true;
+    }
+
+    let current = this._root;
+    const stack = [];
+
+    let prev;
+
+    while (current || stack.length > 0) {
+      if (current) {
+        stack.push(current);
+        current = current.left;
+
+        continue;
+      }
+
+      current = stack.pop();
+
+      if (prev === undefined) {
+        prev = current.key;
+      }
+      else if (current.key < prev) {
+        return false;
+      }
+      else {
+        prev = current.key;
+      }
+
+      current = current.right;
+    }
+
+    return true;
   }
 }
 
