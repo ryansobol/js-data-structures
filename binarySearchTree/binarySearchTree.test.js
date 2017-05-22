@@ -330,6 +330,7 @@ test('is tree with invalid right, left node a binary search tree traversal', (t)
   t.false(tree.isBSTInOrderTraversal());
 });
 
+// eslint-disable-next-line max-statements
 test('lowest common ancesters', (t) => {
   const bst = new BinarySearchTree(
     44, 40, 48, 38, 42, 46, 50, 37, 39, 41, 43, 45, 47, 49, 51

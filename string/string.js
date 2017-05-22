@@ -1,3 +1,4 @@
+/* eslint-disable no-extend-native */
 'use strict';
 
 // O(2n) ~= O(n)
@@ -21,8 +22,6 @@ String.prototype.findFirstNonRepeatingCharSlow = function() {
 
   return null;
 };
-
-'use strict';
 
 // O(mn)
 String.prototype.findFirstNonRepeatingCharFast = function() {

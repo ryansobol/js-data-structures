@@ -1,10 +1,11 @@
+/* eslint-disable no-bitwise */
 'use strict';
 
 module.exports = {
   // O(2n) ~= O(n)
   countOnesString(number) {
     return number.toString(2).split('').reduce((accum, element) => {
-      return accum + parseInt(element)
+      return accum + parseInt(element);
     }, 0);
   },
 
@@ -14,7 +15,7 @@ module.exports = {
 
     for (count = 0; number > 0; number >>= 1) {
       if (number & 1) {
-        count++;
+        count += 1;
       }
     }
 
@@ -50,4 +51,4 @@ module.exports = {
 
     return true;
   }
-}
+};

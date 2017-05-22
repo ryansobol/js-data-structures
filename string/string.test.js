@@ -1,7 +1,8 @@
 'use strict';
 
 const test = require('ava');
-const string = require('./string');
+
+require('./string');
 
 test('find first non-repeating character slow', (t) => {
   t.is('a'.findFirstNonRepeatingCharSlow(), 'a');
@@ -35,6 +36,7 @@ test('find first non-repeating character fast', (t) => {
   t.is('abba'.findFirstNonRepeatingCharFast(), null);
 });
 
+// eslint-disable-next-line max-statements
 test('is palindrome', (t) => {
   t.true('a'.isPalindrome());
   t.true('aba'.isPalindrome());

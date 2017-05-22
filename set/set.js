@@ -18,7 +18,7 @@ class Set {
 
   // O(1)
   doesExist(value) {
-    return !!this._data[value];
+    return Boolean(this._data[value]);
   }
 
   // O(1)

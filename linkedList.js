@@ -222,6 +222,7 @@ class LinkedList {
   }
 
   // O(n)
+  // eslint-disable-next-line max-statements
   insert(key, value) {
     if (key < 0 || key > this.length) {
       return undefined;
@@ -255,6 +256,7 @@ class LinkedList {
   }
 
   // O(n)
+  // eslint-disable-next-line max-statements
   delete(key) {
     if (key < 0 || key >= this.length) {
       return undefined;

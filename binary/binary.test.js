@@ -3,6 +3,7 @@
 const test = require('ava');
 const binary = require('./binary');
 
+// eslint-disable-next-line max-statements
 test('count the ones in a number', (t) => {
   t.is(binary.countOnesString(0), 0);
   t.is(binary.countOnesString(1), 1);
@@ -59,6 +60,7 @@ test('count the ones in a number', (t) => {
   t.is(binary.countOnesOptimized(16), 1);
 });
 
+// eslint-disable-next-line max-statements
 test('is binary a palindrome', (t) => {
   t.true(binary.isPalindrome(0));
   t.true(binary.isPalindrome(1));

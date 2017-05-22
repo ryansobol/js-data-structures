@@ -131,6 +131,7 @@ class BinarySearchTree {
   }
 
   // O(n)
+  // eslint-disable-next-line max-statements
   isBSTInOrderTraversal() {
     if (!this._root) {
       return true;
@@ -151,6 +152,7 @@ class BinarySearchTree {
 
       current = stack.pop();
 
+      // eslint-disable-next-line no-undefined
       if (prev === undefined) {
         prev = current.key;
       }

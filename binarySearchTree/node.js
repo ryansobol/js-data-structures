@@ -83,6 +83,7 @@ class Node {
     return isLeft && isRight;
   }
 
+  // O(log n)
   lowestCommonAncestor(a, b) {
     if (this.key === a || this.key === b) {
       return this.key;
