@@ -44,15 +44,13 @@ class Node {
       return value;
     }
 
-    if (value > this.key) {
-      if (this.right) {
-        return this.right.insert(value);
-      }
-
-      this.right = new Node(value);
-
-      return value;
+    if (this.right) {
+      return this.right.insert(value);
     }
+
+    this.right = new Node(value);
+
+    return value;
   }
 
   // Average: O(log n)
