@@ -1,6 +1,7 @@
 /* eslint-disable no-extend-native */
 'use strict';
 
+// O(n)
 Array.prototype.findFirstDuplicate = function() {
   let i = 0;
   let j = 1;
