@@ -19,6 +19,7 @@ test('remove duplicates of sorted array in place', (t) => {
   t.deepEqual([1, 2, 2, 3, 3].removeDuplcatesSet(), [1, 2, 3]);
 });
 
+// eslint-disable-next-line max-statements
 test('remove duplicates of sorted array in place', (t) => {
   let array = [1];
 
@@ -49,7 +50,6 @@ test('remove duplicates of sorted array in place', (t) => {
 
   t.is(array.removeDuplcatesInPlace(), 3);
   t.deepEqual(array, [1, 2, 3]);
-
 
   array = [1, 2, 2, 3];
 
