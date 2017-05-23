@@ -4,6 +4,18 @@ const test = require('ava');
 
 require('./array');
 
+test('find first duplicate in sorted array', (t) => {
+  t.is([1, 1, 2, 3].findFirstDuplicate(), 1);
+  t.is([1, 2, 2, 3].findFirstDuplicate(), 2);
+  t.is([1, 2, 3, 3].findFirstDuplicate(), 3);
+
+  t.is([1, 2, 3, 4].findFirstDuplicate(), null);
+  t.is([1, 2, 3].findFirstDuplicate(), null);
+  t.is([1, 2].findFirstDuplicate(), null);
+  t.is([1].findFirstDuplicate(), null);
+  t.is([].findFirstDuplicate(), null);
+});
+
 test('remove duplicates of sorted array in place', (t) => {
   t.deepEqual([1].removeDuplcatesSet(), [1]);
   t.deepEqual([1, 1].removeDuplcatesSet(), [1]);

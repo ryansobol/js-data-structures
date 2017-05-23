@@ -1,6 +1,22 @@
 /* eslint-disable no-extend-native */
 'use strict';
 
+Array.prototype.findFirstDuplicate = function() {
+  let i = 0;
+  let j = 1;
+
+  while (j < this.length) {
+    if (this[i] === this[j]) {
+      return this[i];
+    }
+
+    i += 1;
+    j += 1;
+  }
+
+  return null;
+};
+
 // O(2n) ~= O(n)
 Array.prototype.removeDuplcatesSet = function() {
   const set = new Set(this);
