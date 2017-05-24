@@ -398,3 +398,21 @@ test('lowest common ancesters', (t) => {
 
   t.is(bst.lowestCommonAncestor(1, 100), null);
 });
+
+test('for each level', (t) => {
+  const bst = new BinarySearchTree(4, 2, 6, 1, 3, 5, 7);
+
+  const expected = [
+    [4],
+    [2, 6],
+    [1, 3, 5, 7]
+  ];
+
+  let i = 0;
+
+  bst.forEachLevel((level) => {
+    t.deepEqual(level, expected[i]);
+
+    i += 1;
+  });
+});

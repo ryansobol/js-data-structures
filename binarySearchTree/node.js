@@ -84,6 +84,7 @@ class Node {
   }
 
   // O(log n)
+  // TODO doesn't seem right
   lowestCommonAncestor(a, b) {
     if (this.key === a || this.key === b) {
       return this.key;

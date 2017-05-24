@@ -169,12 +169,57 @@ class BinarySearchTree {
     return true;
   }
 
+  // O(log n)
+  // TODO doesn't seem right
   lowestCommonAncestor(a, b) {
     if (!this._root) {
       return null;
     }
 
     return this._root.lowestCommonAncestor(a, b);
+  }
+
+  // O(n)
+  forEachLevel(callback) {
+    if (!this._root) {
+      return;
+    }
+
+    const queue = [];
+
+    queue.push(this._root);
+
+    let currentCount = 1;
+    let nextCount = 0;
+    let output = [];
+
+    while (queue.length) {
+      const node = queue.shift();
+
+      output.push(node.key);
+
+      currentCount -= 1;
+
+      if (node.left) {
+        queue.push(node.left);
+
+        nextCount += 1;
+      }
+
+      if (node.right) {
+        queue.push(node.right);
+
+        nextCount += 1;
+      }
+
+      if (currentCount === 0) {
+        callback(output);
+
+        currentCount = nextCount;
+        nextCount = 0;
+        output = [];
+      }
+    }
   }
 }
 
