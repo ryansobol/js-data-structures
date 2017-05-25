@@ -1,10 +1,13 @@
 'use strict';
 
 class Quicksort {
-  constructor(values) {
+  constructor(...values) {
     this.values = values;
   }
 
+  // Best: O(n log n)
+  // Average: O(n log n)
+  // Worst: O(n^2)
   sort() {
     if (!this.values || !this.values.length){
       return;
@@ -13,11 +16,15 @@ class Quicksort {
     this._quicksort(0, this.values.length - 1);
   }
 
+  // Best: O(n log n)
+  // Average: O(n log n)
+  // Worst: O(n^2)
   _quicksort(low, high) {
     let i = low;
     let j = high;
+    let k = Math.floor(low + (high - low) / 2);
 
-    const pivot = this.values[low + (high - low) / 2];
+    const pivot = this.values[k];
 
     while (i <= j) {
       while (this.values[i] < pivot) {
@@ -47,3 +54,5 @@ class Quicksort {
     }
   }
 }
+
+module.exports = Quicksort;
