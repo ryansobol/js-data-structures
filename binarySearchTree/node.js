@@ -84,7 +84,8 @@ class Node {
   }
 
   // O(log n)
-  // TODO doesn't seem right
+  // TODO doesn't seem right because you stop at a particular depth or go all
+  // the way to the bottom of the tree
   lowestCommonAncestor(a, b) {
     if (this.key === a || this.key === b) {
       return this.key;
@@ -98,6 +99,21 @@ class Node {
     }
 
     return left ? left : right;
+  }
+
+  // O(n)
+  copy() {
+    const node = new Node(this.key);
+
+    if (this.left) {
+      node.left = this.left.copy();
+    }
+
+    if (this.right) {
+      node.right = this.right.copy();
+    }
+
+    return node;
   }
 }
 

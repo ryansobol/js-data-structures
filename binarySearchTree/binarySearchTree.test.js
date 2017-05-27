@@ -416,3 +416,23 @@ test('for each level', (t) => {
     i += 1;
   });
 });
+
+test('copy tree', (t) => {
+  const bst = new BinarySearchTree(42, 40, 44, 41, 43);
+
+  const copy = bst.copy();
+
+  t.is(copy.length, bst.length);
+  t.is(copy._root.key, 42);
+  t.is(copy._root.left.key, 40);
+  t.is(copy._root.right.key, 44);
+  t.is(copy._root.left.right.key, 41);
+  t.is(copy._root.right.left.key, 43);
+
+  t.not(copy, bst);
+  t.not(copy._root, bst._root);
+  t.not(copy._root.left, bst._root.left);
+  t.not(copy._root.right, bst._root.right);
+  t.not(copy._root.left.right, bst._root.left.right);
+  t.not(copy._root.right.left, bst._root.right.left);
+});

@@ -221,6 +221,19 @@ class BinarySearchTree {
       }
     }
   }
+
+  // O(n)
+  copy() {
+    const bst = new BinarySearchTree();
+
+    bst.length = this.length;
+
+    if (this._root) {
+      bst._root = this._root.copy();
+    }
+
+    return bst;
+  }
 }
 
 module.exports = BinarySearchTree;

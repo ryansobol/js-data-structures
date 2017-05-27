@@ -172,3 +172,67 @@ test('lowest common ancestor for node with two children', (t) => {
 
   t.is(node.lowestCommonAncestor(41, 43), 42);
 });
+
+test('copy empty node', (t) => {
+  const node = new Node();
+  const copy = node.copy();
+
+  t.is(copy.key, null);
+  t.is(copy.left, null);
+  t.is(copy.right, null);
+
+  t.not(copy, node);
+});
+
+test('copy node with key', (t) => {
+  const node = new Node(42);
+  const copy = node.copy();
+
+  t.is(copy.key, node.key);
+  t.is(copy.left, null);
+  t.is(copy.right, null);
+
+  t.not(copy, node);
+});
+
+test('copy node with key and left child', (t) => {
+  const left = new Node(41);
+  const node = new Node(42, left);
+  const copy = node.copy();
+
+  t.is(copy.key, node.key);
+  t.is(copy.left.key, left.key);
+  t.is(copy.right, null);
+
+  t.not(copy, node);
+  t.not(copy.left, left);
+});
+
+test('copy node with key and right child', (t) => {
+  const right = new Node(43);
+  const node = new Node(42, null, right);
+  const copy = node.copy();
+
+  t.is(copy.key, node.key);
+  t.is(copy.left, null);
+  t.is(copy.right.key, right.key);
+
+  t.not(copy, node);
+  t.not(copy.right, right);
+});
+
+
+test('copy node with key, left child and right child', (t) => {
+  const left = new Node(41);
+  const right = new Node(43);
+  const node = new Node(42, left, right);
+  const copy = node.copy();
+
+  t.is(copy.key, node.key);
+  t.is(copy.left.key, left.key);
+  t.is(copy.right.key, right.key);
+
+  t.not(copy, node);
+  t.not(copy.left, left);
+  t.not(copy.right, right);
+});
